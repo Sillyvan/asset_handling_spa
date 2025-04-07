@@ -9,9 +9,9 @@ const app = new Hono<{
 .get('/test', (c) => {
 	return c.text('Hello World!');
 })
-// .notFound((c) => {
-// 	return c.newResponse(null, { status: 404 });
-// });
+.notFound((c) => {
+	return c.env.ASSETS.fetch(c.req.raw)
+});
 
 
 export type AppType = typeof app;
